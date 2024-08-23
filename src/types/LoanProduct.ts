@@ -1,5 +1,5 @@
 export interface LoanProduct {
-  id: string;
+  id: number;
   name: string;
   interestRate: number;
   maximumAmount: number;

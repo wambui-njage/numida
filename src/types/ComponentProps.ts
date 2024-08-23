@@ -8,6 +8,4 @@ export interface BaseLayoutProps {
 export interface CustomButtonProps {
   text: string;
   onPress: () => void;
-  style?: ViewStyle;
-  textStyle?: TextStyle;
 }

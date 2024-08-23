@@ -4,10 +4,10 @@ import globalStyles from '../styles/globalStyles';
 import { CustomButtonProps } from '../types/ComponentProps';
 
 
-const CustomButton: React.FC<CustomButtonProps> = ({ text, onPress, style, textStyle }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ text, onPress}) => {
   return (
-    <TouchableOpacity style={[globalStyles.button, style]} onPress={onPress}>
-      <Text style={[globalStyles.buttonText, textStyle]}>{text}</Text>
+    <TouchableOpacity style={globalStyles.button} onPress={onPress}>
+      <Text style={globalStyles.buttonText}>{text}</Text>
      
     </TouchableOpacity>
   );
