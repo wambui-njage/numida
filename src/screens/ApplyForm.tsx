@@ -1,25 +1,18 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
-import globalStyles from '../styles/globalStyles';
+import { Text } from 'react-native';
+import BaseLayout from '../components/BaseLayout';
+import CustomButton from '../components/CustomButton'; // Optional: Use reusable button
 
 const ApplyForm = ({ navigation }: { navigation: any }) => {
   return (
-    <View style={styles.container}>
-      <Text style={globalStyles.text}>Apply Form Screen</Text>
-      <Button
-        title="Go to Dashboard"
+    <BaseLayout>
+      
+      <CustomButton
+        text="Go to Dashboard"
         onPress={() => navigation.navigate('Dashboard')}
       />
-    </View>
+    </BaseLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default ApplyForm;

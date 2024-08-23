@@ -8,6 +8,7 @@ const App = () => {
 
   if (!fontsLoaded) {
     return (
+      //replace with loading lottie animation
       <View style={styles.container}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
