@@ -13,6 +13,13 @@ const globalStyles = StyleSheet.create({
     fontFamily: "robot-regular", // Assuming you have set up custom font
     color: colors.black,
   },
+  header: {
+    fontFamily: "robot-bold",
+    fontSize: 30,
+    lineHeight: 33.98,
+    letterSpacing: 0.01,
+    textAlign: "left",
+  },
   accentText: {
     color: colors.accentGreen,
   },

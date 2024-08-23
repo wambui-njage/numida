@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text} from 'react-native';
 import globalStyles from '../styles/globalStyles';
-import { CustomButtonProps } from '../types/inferfaces';
+import { CustomButtonProps } from '../types/ComponentProps';
 
 
 const CustomButton: React.FC<CustomButtonProps> = ({ text, onPress, style, textStyle }) => {

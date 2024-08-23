@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import colors from '../styles/colors';
-import { BaseLayoutProps } from '../types/inferfaces';
+import { BaseLayoutProps } from '../types/ComponentProps';
 
 
 
