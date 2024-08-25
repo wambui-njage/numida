@@ -1,24 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface FormData {
-  fullName: string;
-  email: string;
-  loanAmount: number;
-  loanPurpose: string;
-}
-
-interface FormState {
-  formData: FormData;
-  submissionSuccess: boolean;
-  error: string | null;
-}
+import { FormData, FormState } from "../../types/Form";
 
 const initialState: FormState = {
   formData: {
-    fullName: "",
+    full_name: "",
     email: "",
-    loanAmount: 0,
-    loanPurpose: "",
+    loan_amount: 0,
+    loan_purpose: "",
   },
   submissionSuccess: false,
   error: null,

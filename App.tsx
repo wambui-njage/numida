@@ -1,7 +1,9 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
+
+import LoadingIndicator from './src/components/LoadingIndicator';
 import AppNavigator from './src/navigation/AppNavigator';
 import useLoadFonts from './src/hooks/useLoadFonts';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 const App = () => {
   const fontsLoaded = useLoadFonts();
@@ -10,7 +12,7 @@ const App = () => {
     return (
       //replace with loading lottie animation
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <LoadingIndicator/>
       </View>
     );
   }

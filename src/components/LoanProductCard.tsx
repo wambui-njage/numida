@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import globalStyles from '../styles/globalStyles';
 import colors from '../styles/colors';
-import { LoanProduct } from '../types/LoanProduct';
+import { LoanProduct } from '../types/Loan';
 
 interface LoanProductCardProps {
   product: LoanProduct;
@@ -16,7 +16,7 @@ const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, on
     <TouchableOpacity
       style={[
         globalStyles.card,
-        { backgroundColor: isActive ? colors.lighterAccent : 'white' }
+        { backgroundColor: isActive ? colors.secondary : 'white' }
       ]}
       onPress={onPress}
     >
@@ -34,7 +34,7 @@ const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, on
         <View style={globalStyles.cardActions}>
           <TouchableOpacity style={globalStyles.learnMoreButton}>
             <Text style={globalStyles.subText}>Learn More</Text>
-            <AntDesign name="arrowright" size={15} color={colors.accentGreen} />
+            <AntDesign name="arrowright" size={15} color={colors.primary} />
           </TouchableOpacity>
         </View>
       </View>

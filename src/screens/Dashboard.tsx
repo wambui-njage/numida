@@ -1,28 +1,24 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Text, View, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
-import { useQuery, gql } from '@apollo/client';
+import { Text, View, FlatList } from 'react-native';
+import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
-
-import BaseLayout from '../components/BaseLayout';
+//store and slices
 import { RootState } from '../store';
 import { setLoanProducts } from '../store/slices/loanProductSlice';
-import globalStyles from '../styles/globalStyles';
+//ui componets
+import BaseLayout from '../components/BaseLayout';
 import CustomButton from '../components/CustomButton';
-import colors from '../styles/colors';
+import Header from '../components/Header';
+import LoadingIndicator from '../components/LoadingIndicator';
 import LoanProductCard from '../components/LoanProductCard';
-import { LoanProduct } from '../types/LoanProduct';
 
-// GraphQL query
-const GET_LOAN_PRODUCTS = gql`
-  query GetLoanProducts {
-    loanProducts {
-      id
-      name
-      interestRate
-      maximumAmount
-    }
-  }
-`;
+//styles
+import globalStyles from '../styles/globalStyles';
+//types
+import { LoanProduct } from '../types/Loan';
+//graphql queries
+import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
+
 
 const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
@@ -33,6 +29,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   useEffect(() => {
     if (data?.loanProducts) {
+      
       dispatch(setLoanProducts(data.loanProducts));
 
       if (data.loanProducts.length > 0) {
@@ -55,7 +52,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const renderContent = () => {
     if (loading) {
-      return <ActivityIndicator size="large" color={colors.accentGreen} />;
+      return <LoadingIndicator size="large" />;
     }
 
     if (error) {
@@ -71,15 +68,14 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
         data={loanProducts}
         renderItem={renderItem}
         keyExtractor={(item) => `${item.id}`}
+        showsVerticalScrollIndicator={false}
       />
     );
   };
 
   return (
     <BaseLayout>
-      <View style={globalStyles.dashboardHeaderContainer}>
-        <Text style={globalStyles.header}>Loan Application Dashboard</Text>
-      </View>
+      <Header title='Loan Application Dashboard'/>
       <View style={globalStyles.contentContainer}>
         {renderContent()}
       </View>
