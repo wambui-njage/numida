@@ -76,8 +76,8 @@ const globalStyles = StyleSheet.create({
 
   footerContainer: {
     flex: 1,
-    width: "100%",
     justifyContent: "center",
+    alignItems: "center",
   },
   input: {
     borderColor: colors.grey,
