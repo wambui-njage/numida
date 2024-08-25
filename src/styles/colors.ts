@@ -5,7 +5,7 @@ const colors = {
   lighterAccent: "#D4FAF5",
   grey: "#B1B1B1",
   lighterGray: "#D9D9D9",
-  error: "#d6eaf8",
+  error: "#FF8080",
 };
 
 export default colors;

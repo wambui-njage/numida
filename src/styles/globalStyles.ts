@@ -73,6 +73,7 @@ const globalStyles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
+
   footerContainer: {
     flex: 1,
     width: "100%",
@@ -89,6 +90,11 @@ const globalStyles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 16,
+  },
+  inputErrorText: {
+    fontFamily: "robot-regular",
+    color: colors.error,
+    marginTop: 5,
   },
   label: {
     fontFamily: "robot-bold",
