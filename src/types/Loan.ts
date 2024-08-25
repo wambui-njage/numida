@@ -16,3 +16,6 @@ export interface LoanData {
   loan_amount: number;
   loan_purpose: string;
 }
+export interface LoanProductState {
+  loanProducts: LoanProduct[];
+}

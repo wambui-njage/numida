@@ -2,21 +2,22 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
-
+//store and slices
 import { RootState } from '../store';
 import { setLoanProducts } from '../store/slices/loanProductSlice';
-
+//ui componets
 import BaseLayout from '../components/BaseLayout';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
+import LoadingIndicator from '../components/LoadingIndicator';
 import LoanProductCard from '../components/LoanProductCard';
 
-
+//styles
 import globalStyles from '../styles/globalStyles';
-
+//types
 import { LoanProduct } from '../types/Loan';
+//graphql queries
 import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
-import LoadingIndicator from '../components/LoadingIndicator';
 
 
 const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
@@ -28,6 +29,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   useEffect(() => {
     if (data?.loanProducts) {
+      
       dispatch(setLoanProducts(data.loanProducts));
 
       if (data.loanProducts.length > 0) {

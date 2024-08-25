@@ -11,7 +11,7 @@ interface LoadingIndicatorProps {
 
 const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({
   size = 'large',
-  color = colors.accentGreen,
+  color = colors.primary,
 }) => {
 
   return  <ActivityIndicator size={size} color={color} />

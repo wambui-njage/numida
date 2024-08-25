@@ -8,13 +8,13 @@ const globalStyles = StyleSheet.create({
     letterSpacing: 0.01,
     lineHeight: 33.98,
     textAlign: "left",
-    color: colors.accentGreen,
+    color: colors.primary,
   },
   accentText: {
-    color: colors.accentGreen,
+    color: colors.primary,
   },
   button: {
-    backgroundColor: colors.accentGreen,
+    backgroundColor: colors.primary,
     borderRadius: 20,
     height: 56,
     justifyContent: "center",
@@ -27,8 +27,8 @@ const globalStyles = StyleSheet.create({
     textAlign: "center",
   },
   card: {
-    backgroundColor: colors.lighterAccent,
-    borderColor: colors.lighterGray,
+    backgroundColor: colors.secondary,
+    borderColor: colors.lightGrey,
     borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 1,
@@ -103,7 +103,7 @@ const globalStyles = StyleSheet.create({
   },
   learnMoreButton: {
     alignItems: "center",
-    borderColor: colors.accentGreen,
+    borderColor: colors.primary,
     borderRadius: 15,
     borderWidth: 2,
     flexDirection: "row",
@@ -120,7 +120,7 @@ const globalStyles = StyleSheet.create({
     textAlign: "left",
   },
   subText: {
-    color: colors.accentGreen,
+    color: colors.primary,
     fontFamily: "robot-regular",
     fontSize: 10,
   },
@@ -133,7 +133,7 @@ const globalStyles = StyleSheet.create({
     fontFamily: "robot-regular",
   },
   whiteBackground: {
-    backgroundColor: colors.lighterGray,
+    backgroundColor: colors.lightGrey,
   },
   whiteText: {
     color: colors.white,

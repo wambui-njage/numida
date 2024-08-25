@@ -1,18 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface LoanProduct {
-  id: number;
-  name: string;
-  interestRate: number;
-  maximumAmount: number;
-}
-
-interface LoanProductState {
-  loanProducts: LoanProduct[];
-}
+import { LoanProduct, LoanProductState } from "../../types/Loan";
 
 const initialState: LoanProductState = {
-  loanProducts: [], // Initialize as an empty array
+  loanProducts: [],
+  loading: false,
+  error: null,
 };
 
 const loanProductSlice = createSlice({
@@ -24,6 +16,6 @@ const loanProductSlice = createSlice({
     },
   },
 });
-
+//do you need a getloanproducts?
 export const { setLoanProducts } = loanProductSlice.actions;
 export default loanProductSlice.reducer;

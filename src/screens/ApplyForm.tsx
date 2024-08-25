@@ -149,6 +149,7 @@ const ApplyForm = () => {
                 />
               </ScrollView>
             </View>
+
             <View style={globalStyles.footerContainer}>
               {loading ? (
                 <LoadingIndicator size="large" />
@@ -156,6 +157,7 @@ const ApplyForm = () => {
                 <CustomButton onPress={handleSubmit} text="SUBMIT" />
               )}
             </View>
+            
           </KeyboardAvoidingView>
         )}
       </Formik>

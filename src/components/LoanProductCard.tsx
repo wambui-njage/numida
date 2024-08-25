@@ -16,7 +16,7 @@ const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, on
     <TouchableOpacity
       style={[
         globalStyles.card,
-        { backgroundColor: isActive ? colors.lighterAccent : 'white' }
+        { backgroundColor: isActive ? colors.secondary : 'white' }
       ]}
       onPress={onPress}
     >
@@ -34,7 +34,7 @@ const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, on
         <View style={globalStyles.cardActions}>
           <TouchableOpacity style={globalStyles.learnMoreButton}>
             <Text style={globalStyles.subText}>Learn More</Text>
-            <AntDesign name="arrowright" size={15} color={colors.accentGreen} />
+            <AntDesign name="arrowright" size={15} color={colors.primary} />
           </TouchableOpacity>
         </View>
       </View>

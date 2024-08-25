@@ -1,13 +1,15 @@
 import React from 'react';
 import Toast from 'react-native-toast-message';
+//navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { Provider } from 'react-redux';
+//redux and store
 import { store } from '../store';
-
-import Dashboard from '../screens/Dashboard';
+import { Provider } from 'react-redux';
+//screens
 import ApplyForm from '../screens/ApplyForm';
-
+import Dashboard from '../screens/Dashboard';
+//apollo
 import client from '../utils/apolloClient';
 import { ApolloProvider } from '@apollo/client';
 

@@ -2,17 +2,8 @@
 import React from 'react';
 import { View, TextInput, Text, TextStyle, ViewStyle, TextInputFocusEventData } from 'react-native';
 import globalStyles from '../styles/globalStyles';
+import { CustomInputProps } from '../types/ComponentProps';
 
-interface CustomInputProps {
-  label: string;
-  value: string;
-  placeholder: string;
-  onChangeText: (text: string) => void;
-  onBlur: (e: TextInputFocusEventData) => void;
-  keyboardType?: 'default' | 'email-address' | 'numeric';
-  error?: string;
-  
-}
 
 const CustomInput: React.FC<CustomInputProps> = ({
   label,
