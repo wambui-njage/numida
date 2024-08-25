@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Text, View, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator, FlatList } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,6 +11,7 @@ import CustomButton from '../components/CustomButton';
 import colors from '../styles/colors';
 import LoanProductCard from '../components/LoanProductCard';
 import { LoanProduct } from '../types/LoanProduct';
+import Header from '../components/Header';
 
 // GraphQL query
 const GET_LOAN_PRODUCTS = gql`
@@ -71,15 +72,14 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
         data={loanProducts}
         renderItem={renderItem}
         keyExtractor={(item) => `${item.id}`}
+        showsVerticalScrollIndicator={false}
       />
     );
   };
 
   return (
     <BaseLayout>
-      <View style={globalStyles.dashboardHeaderContainer}>
-        <Text style={globalStyles.header}>Loan Application Dashboard</Text>
-      </View>
+      <Header title='Loan Application Dashboard'/>
       <View style={globalStyles.contentContainer}>
         {renderContent()}
       </View>

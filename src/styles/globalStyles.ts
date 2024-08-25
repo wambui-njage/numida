@@ -18,6 +18,22 @@ const globalStyles = StyleSheet.create({
     fontSize: 10,
     color: colors.accentGreen,
   },
+  inputContainer: {
+    marginBottom: 16,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 8,
+    fontFamily: "robot-bold",
+  },
+  input: {
+    height: 56,
+    borderColor: colors.grey,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    fontFamily: "robot-regular",
+  },
   accentHeader: {
     fontFamily: "robot-bold",
     fontSize: 24,
@@ -109,12 +125,12 @@ const globalStyles = StyleSheet.create({
   contentContainer: {
     flex: 3,
     width: "100%",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
   footerContainer: {
     flex: 1,
     width: "100%",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
 });
 
