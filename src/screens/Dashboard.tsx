@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Text, View, ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { useQuery, gql } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +7,10 @@ import BaseLayout from '../components/BaseLayout';
 import { RootState } from '../store';
 import { setLoanProducts } from '../store/slices/loanProductSlice';
 import globalStyles from '../styles/globalStyles';
+import CustomButton from '../components/CustomButton';
+import colors from '../styles/colors';
+import LoanProductCard from '../components/LoanProductCard';
+import { LoanProduct } from '../types/LoanProduct';
 
 // GraphQL query
 const GET_LOAN_PRODUCTS = gql`
@@ -20,40 +24,71 @@ const GET_LOAN_PRODUCTS = gql`
   }
 `;
 
-const Dashboard = () => {
+const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const [activeCardId, setActiveCardId] = useState<number | null>(null);
   const dispatch = useDispatch();
-  const { loading, error, data } = useQuery(GET_LOAN_PRODUCTS);
   const loanProducts = useSelector((state: RootState) => state.loanProducts.loanProducts);
+
+  const { loading, error, data } = useQuery<{ loanProducts: LoanProduct[] }>(GET_LOAN_PRODUCTS);
 
   useEffect(() => {
     if (data?.loanProducts) {
       dispatch(setLoanProducts(data.loanProducts));
+
+      if (data.loanProducts.length > 0) {
+        setActiveCardId(data.loanProducts[0].id);
+      }
     }
   }, [data, dispatch]);
 
-  const renderLoanProducts = () => {
-    if (Array.isArray(loanProducts) && loanProducts.length > 0) {
-      return loanProducts.map((product) => (
-        <View key={product.id}>
-          <Text>{product.name}</Text>
-          <Text>Interest Rate: {product.interestRate}%</Text>
-          <Text>Maximum Amount: ${product.maximumAmount}</Text>
-        </View>
-      ));
+  const handleSetActiveCardId = (id: number) => {
+    setActiveCardId(id);
+  };
+
+  const renderItem = useCallback(({ item }: { item: LoanProduct }) => (
+    <LoanProductCard
+      product={item}
+      isActive={item.id === activeCardId}
+      onPress={() => handleSetActiveCardId(item.id)}
+    />
+  ), [activeCardId]);
+
+  const renderContent = () => {
+    if (loading) {
+      return <ActivityIndicator size="large" color={colors.accentGreen} />;
     }
-    return <Text>No loan products available</Text>;
+
+    if (error) {
+      return <Text style={globalStyles.errorText}>Error: {error.message}</Text>;
+    }
+
+    if (loanProducts.length === 0) {
+      return <Text style={globalStyles.errorText}>No loan products available</Text>;
+    }
+
+    return (
+      <FlatList
+        data={loanProducts}
+        renderItem={renderItem}
+        keyExtractor={(item) => `${item.id}`}
+      />
+    );
   };
 
   return (
     <BaseLayout>
-      <Text style={globalStyles.header}>Loan Products</Text>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : error ? (
-        <Text>Error: {error.message}</Text>
-      ) : (
-        <View>{renderLoanProducts()}</View>
-      )}
+      <View style={globalStyles.dashboardHeaderContainer}>
+        <Text style={globalStyles.header}>Loan Application Dashboard</Text>
+      </View>
+      <View style={globalStyles.contentContainer}>
+        {renderContent()}
+      </View>
+      <View style={globalStyles.footerContainer}>
+        <CustomButton 
+          onPress={() => navigation.navigate('ApplyForm')} 
+          text="APPLY FOR A LOAN" 
+        />
+      </View>
     </BaseLayout>
   );
 };

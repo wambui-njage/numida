@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
+import Constants from "expo-constants";
+
 import colors from '../styles/colors';
 import { BaseLayoutProps } from '../types/ComponentProps';
 
@@ -24,7 +26,8 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent:"center",
     alignItems:"center",
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    paddingTop: Constants.statusBarHeight,
   }
 });
 
