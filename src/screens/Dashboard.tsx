@@ -1,29 +1,23 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Text, View, ActivityIndicator, FlatList } from 'react-native';
-import { useQuery, gql } from '@apollo/client';
+import { Text, View, FlatList } from 'react-native';
+import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 
-import BaseLayout from '../components/BaseLayout';
 import { RootState } from '../store';
 import { setLoanProducts } from '../store/slices/loanProductSlice';
-import globalStyles from '../styles/globalStyles';
-import CustomButton from '../components/CustomButton';
-import colors from '../styles/colors';
-import LoanProductCard from '../components/LoanProductCard';
-import { LoanProduct } from '../types/LoanProduct';
-import Header from '../components/Header';
 
-// GraphQL query
-const GET_LOAN_PRODUCTS = gql`
-  query GetLoanProducts {
-    loanProducts {
-      id
-      name
-      interestRate
-      maximumAmount
-    }
-  }
-`;
+import BaseLayout from '../components/BaseLayout';
+import CustomButton from '../components/CustomButton';
+import Header from '../components/Header';
+import LoanProductCard from '../components/LoanProductCard';
+
+
+import globalStyles from '../styles/globalStyles';
+
+import { LoanProduct } from '../types/Loan';
+import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
+import LoadingIndicator from '../components/LoadingIndicator';
+
 
 const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
@@ -56,7 +50,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const renderContent = () => {
     if (loading) {
-      return <ActivityIndicator size="large" color={colors.accentGreen} />;
+      return <LoadingIndicator size="large" />;
     }
 
     if (error) {
