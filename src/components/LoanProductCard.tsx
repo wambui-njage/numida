@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import globalStyles from '../styles/globalStyles';
 import colors from '../styles/colors';
-import { LoanProduct } from '../types/LoanProduct';
+import { LoanProduct } from '../types/Loan';
 
 interface LoanProductCardProps {
   product: LoanProduct;

@@ -10,3 +10,9 @@ export interface LoanProductState {
   loading: boolean;
   error: string | null;
 }
+export interface LoanData {
+  full_name: string;
+  email: string;
+  loan_amount: number;
+  loan_purpose: string;
+}

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FormData {
-  fullName: string;
+  full_name: string;
   email: string;
-  loanAmount: number;
-  loanPurpose: string;
+  loan_amount: number;
+  loan_purpose: string;
 }
 
 interface FormState {
@@ -15,10 +15,10 @@ interface FormState {
 
 const initialState: FormState = {
   formData: {
-    fullName: "",
+    full_name: "",
     email: "",
-    loanAmount: 0,
-    loanPurpose: "",
+    loan_amount: 0,
+    loan_purpose: "",
   },
   submissionSuccess: false,
   error: null,
