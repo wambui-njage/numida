@@ -46,13 +46,14 @@ const ApplyForm = ({ navigation }: { navigation: any }) => {
   return (
     <BaseLayout>
       <KeyboardAvoidingView
-        style={{ flex: 1 ,paddingTop: isKeyboardVisible ? StatusBar.currentHeight : 0 }}
+        style={{ paddingTop: isKeyboardVisible ? StatusBar.currentHeight : 0 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        {!isKeyboardVisible && <Header title="Apply for a loan" />}
         
-        <ScrollView showsVerticalScrollIndicator={false} >
+        {!isKeyboardVisible && <Header title="Apply for a loan" />}
           <View style={globalStyles.contentContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={{width:"100%"}} >
+          
             <CustomInput
               label="Full Name"
               placeholder="Full Name"
@@ -79,12 +80,12 @@ const ApplyForm = ({ navigation }: { navigation: any }) => {
               value={purpose}
               onChangeText={setPurpose}
             />
-          </View>
 
+        </ScrollView>
+          </View>
           <View style={globalStyles.footerContainer}>
             <CustomButton onPress={handleSubmit} text="SUBMIT" />
           </View>
-        </ScrollView>
       </KeyboardAvoidingView>
     </BaseLayout>
   );

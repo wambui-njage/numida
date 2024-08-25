@@ -2,89 +2,44 @@ import { StyleSheet } from "react-native";
 import colors from "./colors";
 
 const globalStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontFamily: "robot-regular", // Assuming you have set up custom font
-    color: colors.black,
-  },
-  subText: {
-    fontFamily: "robot-regular",
-    fontSize: 10,
-    color: colors.accentGreen,
-  },
-  inputContainer: {
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-    fontFamily: "robot-bold",
-  },
-  input: {
-    height: 56,
-    borderColor: colors.grey,
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    fontFamily: "robot-regular",
-  },
   accentHeader: {
     fontFamily: "robot-bold",
     fontSize: 24,
-    lineHeight: 33.98,
     letterSpacing: 0.01,
+    lineHeight: 33.98,
     textAlign: "left",
     color: colors.accentGreen,
-  },
-  header: {
-    fontFamily: "robot-bold",
-    fontSize: 30,
-    lineHeight: 33.98,
-    letterSpacing: 0.01,
-    textAlign: "left",
-  },
-
-  subtitle: {
-    fontFamily: "robot-bold",
-    fontSize: 20,
   },
   accentText: {
     color: colors.accentGreen,
   },
-  whiteText: {
-    color: colors.white,
-  },
-  whiteBackground: {
-    backgroundColor: colors.lighterGray,
-  },
   button: {
     backgroundColor: colors.accentGreen,
-    width: 333, // Fixed width
-    height: 56, // Fixed height
-    justifyContent: "center",
     borderRadius: 20,
+    height: 56,
+    justifyContent: "center",
+    width: 325,
   },
   buttonText: {
     color: colors.white,
-    fontFamily: "robot-bold", // Assuming you have set up custom font
-    textAlign: "center",
+    fontFamily: "robot-bold",
     fontSize: 16,
+    textAlign: "center",
   },
   card: {
-    height: 139,
-    marginBottom: 10,
-    borderRadius: 10,
-    padding: 10,
     backgroundColor: colors.lighterAccent,
+    borderColor: colors.lighterGray,
+    borderRadius: 10,
     borderStyle: "solid",
     borderWidth: 1,
-    borderColor: colors.lighterGray,
+    height: 139,
+    marginBottom: 10,
+    padding: 10,
+  },
+  cardActions: {
+    alignItems: "flex-end",
+    flex: 1,
+    justifyContent: "flex-end",
   },
   cardContent: {
     flexDirection: "row",
@@ -92,45 +47,90 @@ const globalStyles = StyleSheet.create({
   cardDetails: {
     flex: 1,
   },
-  cardActions: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
-  },
   cardHeader: {
     marginBottom: 15,
   },
-  errorText: {
-    fontSize: 16,
-    color: colors.error,
-    textAlign: "center",
-  },
-  learnMoreButton: {
-    borderColor: colors.accentGreen,
-    borderWidth: 2,
-    borderRadius: 15,
-    flexDirection: "row",
+  container: {
     alignItems: "center",
-    padding: 5,
-    paddingHorizontal: 8,
-    justifyContent: "space-between",
-    width: "70%",
-  },
-  dashboardHeaderContainer: {
+    backgroundColor: colors.white,
     flex: 1,
-    width: "100%",
-    justifyContent: "flex-start",
-    top: 70,
+    justifyContent: "center",
+    padding: 16,
   },
   contentContainer: {
     flex: 3,
     width: "100%",
     justifyContent: "center",
   },
+  dashboardHeaderContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    top: 70,
+    width: "100%",
+  },
+  errorText: {
+    color: colors.error,
+    fontSize: 16,
+    textAlign: "center",
+  },
   footerContainer: {
     flex: 1,
     width: "100%",
     justifyContent: "center",
+  },
+  input: {
+    borderColor: colors.grey,
+    borderRadius: 8,
+    borderWidth: 1,
+    fontFamily: "robot-regular",
+    height: 56,
+    paddingHorizontal: 10,
+    width: 325,
+  },
+  inputContainer: {
+    marginBottom: 16,
+  },
+  label: {
+    fontFamily: "robot-bold",
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  learnMoreButton: {
+    alignItems: "center",
+    borderColor: colors.accentGreen,
+    borderRadius: 15,
+    borderWidth: 2,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 5,
+    paddingHorizontal: 8,
+    width: "70%",
+  },
+  header: {
+    fontFamily: "robot-bold",
+    fontSize: 30,
+    letterSpacing: 0.01,
+    lineHeight: 33.98,
+    textAlign: "left",
+  },
+  subText: {
+    color: colors.accentGreen,
+    fontFamily: "robot-regular",
+    fontSize: 10,
+  },
+  subtitle: {
+    fontFamily: "robot-bold",
+    fontSize: 20,
+  },
+  text: {
+    color: colors.black,
+    fontFamily: "robot-regular",
+  },
+  whiteBackground: {
+    backgroundColor: colors.lighterGray,
+  },
+  whiteText: {
+    color: colors.white,
   },
 });
 
