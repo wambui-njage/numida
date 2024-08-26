@@ -25,9 +25,19 @@ const formSlice = createSlice({
       state.submissionSuccess = false;
       state.error = action.payload;
     },
+    clearForm: (state) => {
+      state.formData = {
+        full_name: "",
+        email: "",
+        loan_amount: 0,
+        loan_purpose: "",
+      };
+      state.submissionSuccess = false;
+      state.error = null;
+    },
   },
 });
 
-export const { submitForm, submitFormFailure } = formSlice.actions;
+export const { submitForm, submitFormFailure, clearForm } = formSlice.actions;
 
 export default formSlice.reducer;

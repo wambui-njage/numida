@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import colors from "./colors";
 
 const globalStyles = StyleSheet.create({
@@ -18,7 +18,7 @@ const globalStyles = StyleSheet.create({
     borderRadius: 20,
     height: 56,
     justifyContent: "center",
-    width: 325,
+    width: "100%",
   },
   buttonText: {
     color: colors.white,
@@ -61,6 +61,7 @@ const globalStyles = StyleSheet.create({
     flex: 3,
     width: "100%",
     justifyContent: "center",
+    paddingHorizontal: Platform.OS == "ios" ? 30 : 0,
   },
   dashboardHeaderContainer: {
     flex: 1,
@@ -76,8 +77,18 @@ const globalStyles = StyleSheet.create({
 
   footerContainer: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: Platform.OS == "ios" ? 30 : 0,
+  },
+  header: {
+    fontFamily: "robot-bold",
+    fontSize: 30,
+    letterSpacing: 0.01,
+    lineHeight: 33.98,
+    textAlign: "left",
+    paddingHorizontal: Platform.OS == "ios" ? 30 : 0,
   },
   input: {
     borderColor: colors.grey,
@@ -112,13 +123,39 @@ const globalStyles = StyleSheet.create({
     paddingHorizontal: 8,
     width: "70%",
   },
-  header: {
-    fontFamily: "robot-bold",
-    fontSize: 30,
-    letterSpacing: 0.01,
-    lineHeight: 33.98,
-    textAlign: "left",
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
+  modalContent: {
+    width: "80%",
+    padding: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+  },
+  modalImage: {
+    marginBottom: 20,
+  },
+  modalText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  retryButton: {
+    padding: 10,
+    backgroundColor: colors.primary,
+    width: "100%",
+    borderRadius: 15,
+  },
+  retryButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
   subText: {
     color: colors.primary,
     fontFamily: "robot-regular",

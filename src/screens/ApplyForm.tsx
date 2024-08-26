@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, KeyboardAvoidingView, ScrollView, Platform, Keyboard, StatusBar } from 'react-native';
 import { Formik, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import Toast from 'react-native-toast-message';
 
@@ -17,45 +16,27 @@ import globalStyles from '../styles/globalStyles';
 
 // Custom hooks
 import useApplyLoan from '../hooks/useApplyLoan';
+import { RootState } from '../store';
+import { createValidationSchema } from '../utils/validationSchema';
+import { clearForm } from '../store/slices/formSlice';
 
-const ApplyForm = () => {
+const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
   const dispatch = useDispatch();
   const { applyLoan, loading } = useApplyLoan();
-  const formState = useSelector((state: any) => state.form);
-
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const formState = useSelector((state: any) => state.form);
+  const { activeLoanProduct } = useSelector((state: RootState) => state.loanProducts);
 
-  const validationSchema = Yup.object().shape({
-    fullname: Yup.string()
-      .matches(/^[a-zA-Z]+\s[a-zA-Z]+$/, 'Full name must include at least two names')
-      .required('Full name is required'),
-    
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-    
-    amount: Yup.number()
-      .typeError('Amount must be a number')
-      .required('Amount is required')
-      .moreThan(1000, 'Loan amount must be greater than 1000'),
-    
-    purpose: Yup.string()
-      .min(5, 'Loan purpose must be more than 4 characters')
-      .required('Loan purpose is required'),
-  });
+  const validationSchema = createValidationSchema(activeLoanProduct?.maximumAmount ?? Infinity);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true);
-      }
+      () => setKeyboardVisible(true)
     );
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false);
-      }
+      () => setKeyboardVisible(false)
     );
 
     return () => {
@@ -64,36 +45,40 @@ const ApplyForm = () => {
     };
   }, []);
 
-  const handleSubmit = async (
-    values: any,
-    { resetForm }: FormikHelpers<any>
-  ) => {
-    Keyboard.dismiss();
+  //array dependancies to allow a render updated data - bugfix
+  useEffect(() => {
 
-    try {
-      await applyLoan({
-        full_name: values.fullname,
-        email: values.email,
-        loan_amount: values.amount,
-        loan_purpose: values.purpose,
+    if (formState.submissionSuccess && formState.formData.loan_amount) {
+      Toast.show({
+        type: 'success',
+        text1: 'Loan application submitted successfully!',
       });
+      dispatch(clearForm());
+      navigation.navigate('Dashboard');
+    }
+  }, [formState.submissionSuccess,formState.formData.loan_amount]);
 
-      if (formState.submissionSuccess) {
-        resetForm();
-        Toast.show({
-          type: 'success',
-          text1: 'Loan application submitted successfully!',
+  const handleSubmit =  async (values: any, { resetForm }: FormikHelpers<any>) => {
+      Keyboard.dismiss();
+
+      try {
+        await applyLoan({
+          full_name: values.fullname,
+          email: values.email,
+          loan_amount: values.amount,
+          loan_purpose: values.purpose,
         });
-      }
-    } catch (err) {
-      if (formState.error) {
+
+        resetForm();
+      } catch (err) {
+        //Sentry would be added here for debuging
         Toast.show({
           type: 'error',
-          text1: formState.error,
+          text1: 'An error occurred. Please try again.',
         });
       }
     }
-  };
+  
 
   return (
     <BaseLayout>
@@ -131,7 +116,7 @@ const ApplyForm = () => {
 
                 <CustomInput
                   label="Loan Amount"
-                  placeholder="UGX"
+                  placeholder="USD"
                   onChangeText={handleChange('amount')}
                   onBlur={handleBlur('amount')}
                   value={values.amount}
@@ -157,7 +142,6 @@ const ApplyForm = () => {
                 <CustomButton onPress={handleSubmit} text="SUBMIT" />
               )}
             </View>
-            
           </KeyboardAvoidingView>
         )}
       </Formik>
