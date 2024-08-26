@@ -12,6 +12,7 @@ import Dashboard from '../screens/Dashboard';
 //apollo
 import client from '../utils/apolloClient';
 import { ApolloProvider } from '@apollo/client';
+import { NetworkProvider } from '../providers/NetworkProvider';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const AppNavigator = () => {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
+      <NetworkProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -26,6 +28,7 @@ const AppNavigator = () => {
         </Stack.Navigator>
         <Toast />
       </NavigationContainer>
+      </NetworkProvider>
       </ApolloProvider>
     </Provider>
   );
