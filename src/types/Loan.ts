@@ -5,11 +5,6 @@ export interface LoanProduct {
   maximumAmount: number;
 }
 
-export interface LoanProductCardProps {
-  product: LoanProduct;
-  isActive: boolean;
-  onPress: () => void;
-}
 export interface LoanProductState {
   loanProducts: LoanProduct[];
   loading: boolean;
@@ -23,10 +18,4 @@ export interface LoanData {
 }
 export interface LoanProductState {
   loanProducts: LoanProduct[];
-}
-
-export interface LoanProductModalProps {
-  visible: boolean;
-  product: LoanProduct | null;
-  onClose: () => void;
 }

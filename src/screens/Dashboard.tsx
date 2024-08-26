@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Text, View, FlatList, Alert } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 // Store and slices

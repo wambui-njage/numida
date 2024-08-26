@@ -3,7 +3,8 @@ import React from 'react';
 import { Modal, View, Text, TouchableOpacity, Pressable } from 'react-native';
 import globalStyles from '../styles/globalStyles';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { LoanProductModalProps } from '../types/Loan';
+import { LoanProductModalProps } from '../types/ComponentProps';
+
 
 
 const LoanProductModal: React.FC<LoanProductModalProps> = ({ visible, product, onClose }) => {

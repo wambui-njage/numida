@@ -3,11 +3,8 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import colors from '../styles/colors'; 
+import { LoadingIndicatorProps } from '../types/ComponentProps';
 
-interface LoadingIndicatorProps {
-  size?: 'small' | 'large';
-  color?: string;
-}
 
 const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({
   size = 'large',

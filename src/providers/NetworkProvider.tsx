@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import { View, Modal, Text, TouchableOpacity } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
-import { View, Modal, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import colors from '../styles/colors';
 import Toast from 'react-native-toast-message';
+
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import globalStyles from '../styles/globalStyles';
 
 interface NetworkContextValue {

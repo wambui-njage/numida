@@ -94,7 +94,7 @@ const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
           >
             {!isKeyboardVisible && <Header title="Apply for a loan" />}
             <View style={globalStyles.contentContainer}>
-              <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%" }}>
+              <ScrollView showsVerticalScrollIndicator={false} >
                 <CustomInput
                   label="Full Name"
                   value={values.fullname}
