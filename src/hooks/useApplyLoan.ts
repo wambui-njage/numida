@@ -5,7 +5,7 @@ import { submitForm, submitFormFailure } from "../store/slices/formSlice";
 import { LoanData } from "../types/Loan";
 
 // REST API endpoint
-const API_URL = "http://192.168.0.103:5000/apply-loan";
+const API_URL = "http://192.168.1.63:5000/apply-loan";
 
 const useApplyLoan = () => {
   const [loading, setLoading] = useState<boolean>(false);
