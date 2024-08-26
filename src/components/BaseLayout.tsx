@@ -6,8 +6,6 @@ import colors from '../styles/colors';
 import { BaseLayoutProps } from '../types/ComponentProps';
 
 
-
-
 const BaseLayout: React.FC<BaseLayoutProps> = ({ children, style }) => {
 
 

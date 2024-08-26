@@ -1,6 +1,6 @@
 // components/CustomInput.tsx
 import React from 'react';
-import { View, TextInput, Text, TextStyle, ViewStyle, TextInputFocusEventData } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import globalStyles from '../styles/globalStyles';
 import { CustomInputProps } from '../types/ComponentProps';
 

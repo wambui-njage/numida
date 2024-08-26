@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import globalStyles from '../styles/globalStyles';
 import colors from '../styles/colors';
-import { LoanProduct } from '../types/Loan';
 
-interface LoanProductCardProps {
-  product: LoanProduct;
-  isActive: boolean;
-  onPress: () => void;
-}
+import { LoanProductCardProps } from '../types/ComponentProps';
+import LoanProductModal from './LoanProductModal';
+
 
 const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, onPress }) => {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
+    <>
     <TouchableOpacity
       style={[
         globalStyles.card,
@@ -32,13 +33,19 @@ const LoanProductCard: React.FC<LoanProductCardProps> = ({ product, isActive, on
           <Text>Interest: {product.interestRate}%</Text>
         </View>
         <View style={globalStyles.cardActions}>
-          <TouchableOpacity style={globalStyles.learnMoreButton}>
+          <TouchableOpacity style={globalStyles.learnMoreButton} onPress={() => setModalVisible(true)}>
             <Text style={globalStyles.subText}>Learn More</Text>
             <AntDesign name="arrowright" size={15} color={colors.primary} />
           </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>
+    <LoanProductModal
+    visible={modalVisible}
+    product={product}
+    onClose={() => setModalVisible(false)}
+  />
+  </>
   );
 };
 

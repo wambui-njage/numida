@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import { View, Modal, Text, TouchableOpacity } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
-import { View, Modal, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import colors from '../styles/colors';
 import Toast from 'react-native-toast-message';
+
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import globalStyles from '../styles/globalStyles';
 
 interface NetworkContextValue {
   isConnected: boolean;
@@ -57,12 +58,12 @@ export const NetworkProvider: React.FC<{ children: React.ReactNode }> = ({ child
     <NetworkContext.Provider value={{ isConnected, retryConnection }}>
       {children}
       <Modal transparent={true} visible={isModalVisible} animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>No Internet Connection</Text>
-            <MaterialIcons style={styles.image} name="wifi-off" size={100} color="black" />
-            <TouchableOpacity style={styles.retryButton} onPress={retryConnection}>
-              <Text style={styles.retryButtonText}>Retry</Text>
+        <View style={globalStyles.modalContainer}>
+          <View style={globalStyles.modalContent}>
+            <Text style={globalStyles.modalText}>You have no internet connection</Text>
+            <MaterialIcons style={globalStyles.modalImage} name="wifi-off" size={100} color="black" />
+            <TouchableOpacity style={globalStyles.retryButton} onPress={retryConnection}>
+              <Text style={globalStyles.retryButtonText}>Retry</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -71,40 +72,3 @@ export const NetworkProvider: React.FC<{ children: React.ReactNode }> = ({ child
   );
 };
 
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    
-  },
-  modalContent: {
-    width: '80%',
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  modalText: {
-    fontSize: 16,
-    fontWeight:"bold",
-    marginBottom: 20,
-  },
-  image: {
-    
-    marginBottom: 20,
-  },
-  retryButton: {
-    padding: 10,
-    backgroundColor: colors.primary,
-    width:"100%",
-    borderRadius: 15,
-    
-  },
-  retryButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign:"center"
-  },
-});

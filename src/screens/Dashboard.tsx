@@ -2,53 +2,61 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
-//store and slices
+// Store and slices
 import { RootState } from '../store';
-import { setLoanProducts } from '../store/slices/loanProductSlice';
-//ui componets
+import { setLoanProducts, setActiveLoanProduct } from '../store/slices/loanProductSlice';
+// UI components
 import BaseLayout from '../components/BaseLayout';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/Header';
 import LoadingIndicator from '../components/LoadingIndicator';
 import LoanProductCard from '../components/LoanProductCard';
-
-//styles
+// Styles
 import globalStyles from '../styles/globalStyles';
-//types
+// Types
 import { LoanProduct } from '../types/Loan';
-//graphql queries
+// GraphQL queries
 import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
-
+import Toast from 'react-native-toast-message';
 
 const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<LoanProduct | null>(null);
+  const {loanProducts} = useSelector((state: RootState) => state.loanProducts);
+  
   const dispatch = useDispatch();
-  const loanProducts = useSelector((state: RootState) => state.loanProducts.loanProducts);
 
   const { loading, error, data } = useQuery<{ loanProducts: LoanProduct[] }>(GET_LOAN_PRODUCTS);
 
   useEffect(() => {
     if (data?.loanProducts) {
-      
       dispatch(setLoanProducts(data.loanProducts));
-
-      if (data.loanProducts.length > 0) {
-        setActiveCardId(data.loanProducts[0].id);
-      }
     }
   }, [data, dispatch]);
 
-  const handleSetActiveCardId = (id: number) => {
-    setActiveCardId(id);
+  const handleSetActiveCard = (item: LoanProduct) => {
+    setActiveCard(item);
+    dispatch(setActiveLoanProduct(item));
+  };
+
+  const handleApplyPress = () => {
+    if (!activeCard) {
+      Toast.show({
+        type: 'error',
+        text1: 'No Loan Product Selected',
+        text2: 'Please select a loan product before applying.',
+      });
+      return;
+    }
+    navigation.navigate('ApplyForm');
   };
 
   const renderItem = useCallback(({ item }: { item: LoanProduct }) => (
     <LoanProductCard
       product={item}
-      isActive={item.id === activeCardId}
-      onPress={() => handleSetActiveCardId(item.id)}
+      isActive={item.id === activeCard?.id}
+      onPress={() => handleSetActiveCard(item)}
     />
-  ), [activeCardId]);
+  ), [activeCard]);
 
   const renderContent = () => {
     if (loading) {
@@ -81,7 +89,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
       </View>
       <View style={globalStyles.footerContainer}>
         <CustomButton 
-          onPress={() => navigation.navigate('ApplyForm')} 
+          onPress={handleApplyPress} 
           text="APPLY FOR A LOAN" 
         />
       </View>

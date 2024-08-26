@@ -13,6 +13,7 @@ const useLoadFonts = () => {
         });
         setFontsLoaded(true);
       } catch (error) {
+        //sentry logger
         console.error("Error loading fonts", error);
       }
     };

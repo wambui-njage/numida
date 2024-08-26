@@ -10,7 +10,7 @@ const App = () => {
 
   if (!fontsLoaded) {
     return (
-      //replace with loading lottie animation
+
       <View style={styles.container}>
         <LoadingIndicator/>
       </View>

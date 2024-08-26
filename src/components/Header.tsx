@@ -1,10 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import globalStyles from '../styles/globalStyles';
+import { HeaderProps } from '../types/ComponentProps';
 
-interface HeaderProps {
-  title: string;
-}
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
