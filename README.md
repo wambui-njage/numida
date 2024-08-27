@@ -49,6 +49,7 @@ numida/
 ├── backend/ # Backend code (e.g., server, APIs)
 ├── src/
 │ ├── components/ # Reusable UI components
+│ ├── constants/ # Manage error and success strings centrally
 │ ├── graphql/
 │ │ └── queries/ # GraphQL queries
 │ ├── hooks/ # Custom React hooks
