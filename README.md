@@ -39,14 +39,19 @@ yarn install
 3.Start the Expo server
 yarn start
 
-4.Run on a physical device or simulator:
+4.Install Expo Go to run on a physical device or simulator:
+
+Expo Go Links For Play Store and App Store
+
+Play Store: https://play.google.com/store/apps/details?id=host.exp.exponent&pcampaignid=web_share
+App Store: https://apps.apple.com/us/app/expo-go/id982107779
 
 Use the Expo Go app on your mobile device to scan the QR code provided by the Expo server.
 Or press i to run the app in an iOS simulator or a to run it in an Android emulator.
 
 File Structure
 numida/
-├── backend/ # Backend code (e.g., server, APIs)
+├── backend/ # Backend code (APIs)
 ├── src/
 │ ├── components/ # Reusable UI components
 │ ├── constants/ # Manage error and success strings centrally
