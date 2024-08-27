@@ -18,6 +18,7 @@ import { LoanProduct } from '../types/Loan';
 // GraphQL queries
 import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
 import Toast from 'react-native-toast-message';
+import errorMessages from '../constants/errorMessages';
 
 const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [activeCard, setActiveCard] = useState<LoanProduct | null>(null);
@@ -31,7 +32,14 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (data?.loanProducts) {
       dispatch(setLoanProducts(data.loanProducts));
     }
-  }, [data, dispatch]);
+    if (error) {
+      Toast.show({
+        type: 'error',
+        text1: errorMessages.genericError,
+        text2: errorMessages.noLoanProducts,
+      });
+    }
+  }, [data, error, dispatch]);
 
   const handleSetActiveCard = (item: LoanProduct) => {
     setActiveCard(item);
@@ -42,8 +50,8 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (!activeCard) {
       Toast.show({
         type: 'error',
-        text1: 'No Loan Product Selected',
-        text2: 'Please select a loan product before applying.',
+        text1:  errorMessages.genericError,
+        text2: errorMessages.noLoanProductSelected,
       });
       return;
     }
@@ -61,10 +69,6 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
   const renderContent = () => {
     if (loading) {
       return <LoadingIndicator size="large" />;
-    }
-
-    if (error) {
-      return <Text style={globalStyles.errorText}>Error: {error.message}</Text>;
     }
 
     if (loanProducts.length === 0) {

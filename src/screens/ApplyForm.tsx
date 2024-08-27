@@ -19,6 +19,8 @@ import useApplyLoan from '../hooks/useApplyLoan';
 import { RootState } from '../store';
 import { createValidationSchema } from '../utils/validationSchema';
 import { clearForm } from '../store/slices/formSlice';
+import errorMessages from '../constants/errorMessages';
+import successMessages from '../constants/successMessages';
 
 const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
     if (formState.submissionSuccess && formState.formData.loan_amount) {
       Toast.show({
         type: 'success',
-        text1: 'Loan application submitted successfully!',
+        text1: successMessages.loanApplication,
       });
       dispatch(clearForm());
       navigation.navigate('Dashboard');
@@ -70,11 +72,12 @@ const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
         });
 
         resetForm();
-      } catch (err) {
+      } catch (err:any) {
         //Sentry would be added here for debuging
         Toast.show({
           type: 'error',
-          text1: 'An error occurred. Please try again.',
+          text1: errorMessages.genericError,
+          text2: err.message,
         });
       }
     }
