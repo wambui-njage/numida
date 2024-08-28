@@ -1,8 +1,6 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { API_URL } from "@env";
 
-console.log(`${API_URL}/graphql`);
-
 // Custom fetch function with timeout (Network error was taking more than 60sec to timeout)
 const fetchWithTimeout = (
   url: RequestInfo | URL,
