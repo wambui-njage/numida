@@ -1,4 +1,8 @@
-import { ViewStyle, TextInputFocusEventData } from "react-native";
+import {
+  ViewStyle,
+  TextInputFocusEventData,
+  NativeSyntheticEvent,
+} from "react-native";
 import { LoanProduct } from "./Loan";
 
 export interface BaseLayoutProps {
@@ -16,7 +20,7 @@ export interface CustomInputProps {
   value: string;
   placeholder: string;
   onChangeText: (text: string) => void;
-  onBlur: (e: TextInputFocusEventData) => void;
+  onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   keyboardType?: "default" | "email-address" | "numeric";
   error?: string;
 }
