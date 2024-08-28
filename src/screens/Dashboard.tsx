@@ -28,6 +28,7 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const { loading, error, data } = useQuery<{ loanProducts: LoanProduct[] }>(GET_LOAN_PRODUCTS);
 
+
   useEffect(() => {
     if (data?.loanProducts) {
       dispatch(setLoanProducts(data.loanProducts));
@@ -70,9 +71,13 @@ const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
     if (loading) {
       return <LoadingIndicator size="large" />;
     }
+    
+    if (error && !loading ) {
+      return <Text style={globalStyles.errorText}>{error.message}</Text>;
+    }
 
-    if (loanProducts.length === 0) {
-      return <Text style={globalStyles.errorText}>No loan products available</Text>;
+    if (loanProducts.length === 0 ) {
+      return <Text style={globalStyles.errorText}>{errorMessages.noLoanProducts}</Text>;
     }
 
     return (

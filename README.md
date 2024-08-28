@@ -24,8 +24,14 @@ Setup and Installation
 
 Prerequisites
 -Node.js (version >= 12.x)
+https://nodejs.org/en/download/package-manager/current
+
 -Yarn or npm
+(yarn) https://classic.yarnpkg.com/lang/en/docs/install/
+(npm) https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
 -Expo CLI (version >= 5.x)
+https://docs.expo.dev/archive/expo-cli/
 
 Installation
 
@@ -39,16 +45,22 @@ yarn install
 3.Start the Expo server
 yarn start
 
-4.Run on a physical device or simulator:
+4.Install Expo Go to run on a physical device or simulator:
+
+Expo Go Links For Play Store and App Store
+
+Play Store: https://play.google.com/store/apps/details?id=host.exp.exponent&pcampaignid=web_share
+App Store: https://apps.apple.com/us/app/expo-go/id982107779
 
 Use the Expo Go app on your mobile device to scan the QR code provided by the Expo server.
 Or press i to run the app in an iOS simulator or a to run it in an Android emulator.
 
 File Structure
 numida/
-├── backend/ # Backend code (e.g., server, APIs)
+├── backend/ # Backend code (APIs)
 ├── src/
 │ ├── components/ # Reusable UI components
+│ ├── constants/ # Manage error and success strings centrally
 │ ├── graphql/
 │ │ └── queries/ # GraphQL queries
 │ ├── hooks/ # Custom React hooks
@@ -62,4 +74,18 @@ numida/
 ├── assets/ # Image, font, and other static assets
 ├── App.tsx # Entry point of the application
 ├── app.json # Expo configuration
+├── .env # Environment variables (API URLs, keys, etc.)
+│
+├── env.d.ts # TypeScript declarations for environment variables
+│ # This file declares types for the variables defined in the `.env` file
+│
+├── app.json # Expo configuration
+│
+├── babel.config.js # Babel configuration for React Native and Expo
+│
+├── package.json # Project dependencies and scripts
+│
+├── yarn.lock # Yarn lock file to ensure consistent installations
+│
+└── tsconfig.json # TypeScript configuration
 └── README.md # App documentation (this file)
