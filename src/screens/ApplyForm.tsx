@@ -26,6 +26,7 @@ import errorMessages from '../constants/errorMessages';
 import successMessages from '../constants/successMessages';
 //types
 import { ApplyFormNavigationProp } from '../types/navigationTypes';
+import { FormValues } from '../types/Form';
 
 const ApplyForm: React.FC<{ navigation: ApplyFormNavigationProp }> = ({ navigation }) =>{
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const ApplyForm: React.FC<{ navigation: ApplyFormNavigationProp }> = ({ navigati
     }
   }, [formState.submissionSuccess,formState.formData.loan_amount]);
 
-  const handleSubmit =  async (values: any, { resetForm }: FormikHelpers<any>) => {
+  const handleSubmit =  async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
       Keyboard.dismiss();
 
       try {
@@ -91,7 +92,7 @@ const ApplyForm: React.FC<{ navigation: ApplyFormNavigationProp }> = ({ navigati
   return (
     <BaseLayout>
       <Formik
-        initialValues={{ fullname: '', email: '', amount: '', purpose: '' }}
+        initialValues={{ fullname: '', email: '', amount: 0, purpose: '' }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >

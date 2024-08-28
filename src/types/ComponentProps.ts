@@ -17,7 +17,7 @@ export interface CustomButtonProps {
 
 export interface CustomInputProps {
   label: string;
-  value: string;
+  value: string | number;
   placeholder: string;
   onChangeText: (text: string) => void;
   onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;

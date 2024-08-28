@@ -9,3 +9,9 @@ export interface FormState {
   submissionSuccess: boolean;
   error: string | null;
 }
+export interface FormValues {
+  fullname: string;
+  email: string;
+  amount: number;
+  purpose: string;
+}
