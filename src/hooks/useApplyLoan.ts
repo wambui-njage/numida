@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 import { submitForm, submitFormFailure } from "../store/slices/formSlice";
 
 import { LoanData } from "../types/Loan";
+import { API_URL } from "@env";
 
 // REST API endpoint
-const API_URL = "http://192.168.1.63:5000/apply-loan";
+const BASE_URL = `${API_URL}/apply-loan`;
 
 const useApplyLoan = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,7 +17,7 @@ const useApplyLoan = () => {
   const applyLoan = async (loanData: LoanData) => {
     setLoading(true);
     try {
-      const response = await axios.post(API_URL, loanData);
+      const response = await axios.post(BASE_URL, loanData);
       dispatch(submitForm(loanData));
       return response.data;
     } catch (err) {

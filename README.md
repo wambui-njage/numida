@@ -24,8 +24,14 @@ Setup and Installation
 
 Prerequisites
 -Node.js (version >= 12.x)
+https://nodejs.org/en/download/package-manager/current
+
 -Yarn or npm
+(yarn) https://classic.yarnpkg.com/lang/en/docs/install/
+(npm) https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
 -Expo CLI (version >= 5.x)
+https://docs.expo.dev/archive/expo-cli/
 
 Installation
 
@@ -68,4 +74,18 @@ numida/
 ├── assets/ # Image, font, and other static assets
 ├── App.tsx # Entry point of the application
 ├── app.json # Expo configuration
+├── .env # Environment variables (API URLs, keys, etc.)
+│
+├── env.d.ts # TypeScript declarations for environment variables
+│ # This file declares types for the variables defined in the `.env` file
+│
+├── app.json # Expo configuration
+│
+├── babel.config.js # Babel configuration for React Native and Expo
+│
+├── package.json # Project dependencies and scripts
+│
+├── yarn.lock # Yarn lock file to ensure consistent installations
+│
+└── tsconfig.json # TypeScript configuration
 └── README.md # App documentation (this file)

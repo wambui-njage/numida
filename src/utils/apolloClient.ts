@@ -1,9 +1,10 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { API_URL } from "@env";
 
 // Create Apollo Client
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "http://192.168.1.30:5000/graphql",
+    uri: `${API_URL}/graphql`,
   }),
   cache: new InMemoryCache(),
 });
