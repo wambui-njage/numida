@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Text, View, FlatList } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 // Store and slices
@@ -15,12 +16,15 @@ import LoanProductCard from '../components/LoanProductCard';
 import globalStyles from '../styles/globalStyles';
 // Types
 import { LoanProduct } from '../types/Loan';
+import { DashboardNavigationProp } from '../types/navigationTypes';
+
 // GraphQL queries
 import { GET_LOAN_PRODUCTS } from '../graphql/queries/getLoadProducts';
 import Toast from 'react-native-toast-message';
 import errorMessages from '../constants/errorMessages';
 
-const Dashboard: React.FC<{ navigation: any }> = ({ navigation }) => {
+
+const Dashboard: React.FC<{ navigation: DashboardNavigationProp }> = ({ navigation }) => {
   const [activeCard, setActiveCard] = useState<LoanProduct | null>(null);
   const {loanProducts} = useSelector((state: RootState) => state.loanProducts);
   

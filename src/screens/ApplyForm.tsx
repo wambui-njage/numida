@@ -16,13 +16,18 @@ import globalStyles from '../styles/globalStyles';
 
 // Custom hooks
 import useApplyLoan from '../hooks/useApplyLoan';
+//store and slice
 import { RootState } from '../store';
-import { createValidationSchema } from '../utils/validationSchema';
 import { clearForm } from '../store/slices/formSlice';
+//validation schema
+import { createValidationSchema } from '../utils/validationSchema';
+//constants
 import errorMessages from '../constants/errorMessages';
 import successMessages from '../constants/successMessages';
+//types
+import { ApplyFormNavigationProp } from '../types/navigationTypes';
 
-const ApplyForm: React.FC<{ navigation: any }> = ({ navigation }) =>{
+const ApplyForm: React.FC<{ navigation: ApplyFormNavigationProp }> = ({ navigation }) =>{
   const dispatch = useDispatch();
   const { applyLoan, loading } = useApplyLoan();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
