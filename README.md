@@ -11,9 +11,10 @@ Features
 -Loading Indicator: Visual feedback during form submission with a loading spinner.
 -Internet Check: Checks if the device is connected to the internet and gives the user feedback
 
-Tech Stack
+Tech Stack & Major Libraries
 -React Native: Mobile app framework for building native apps using React.
 -Expo: A set of tools and services for building and deploying React Native applications.
+
 -Formik: A library for easily building forms in React and React Native.
 -Yup: A schema builder for value parsing and validation.
 -Redux Toolkit: A powerful toolset for efficient Redux development.
