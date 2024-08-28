@@ -72,6 +72,7 @@ numida/
 │ ├── types/ # TypeScript types and interfaces
 │ └── utils/ # Utility functions (e.g., validation schemas)
 ├── assets/ # Image, font, and other static assets
+├── test/ # Test jest files
 ├── App.tsx # Entry point of the application
 ├── app.json # Expo configuration
 ├── .env # Environment variables (API URLs, keys, etc.)
